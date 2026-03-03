@@ -3,22 +3,22 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-from scrapers.reddit import scrape_reddit
+from scrapers.hackernews import scrape_hackernews
 from scrapers.youtube import scrape_youtube
 from curator import curate
 from emailer import send_email
 
 
 def main():
-    print("Scraping Reddit...")
-    reddit_posts = scrape_reddit()
-    print(f"  Found {len(reddit_posts)} Reddit posts")
+    print("Scraping Hacker News...")
+    hn_posts = scrape_hackernews()
+    print(f"  Found {len(hn_posts)} Hacker News posts")
 
     print("Scraping YouTube...")
     yt_videos = scrape_youtube()
     print(f"  Found {len(yt_videos)} YouTube videos")
 
-    all_items = reddit_posts + yt_videos
+    all_items = hn_posts + yt_videos
     if not all_items:
         print("No items scraped. Exiting.")
         sys.exit(1)
